@@ -112,16 +112,14 @@ function getByID($tableName, $id){
             $row = mysqli_fetch_assoc($result);
             $response = [
                 'status' => 404,
-                'data' => $row
-                'message' => 'Record Found!'
-            ];
+                'data' => $row,
+                'message' => 'Record Found!'];
             return $response;
 
         }else{
                 $response = [
                     'status' => 404,
-                    'message' => 'NO Data found!'
-                ];
+                    'message' => 'NO Data found!'];
                 return $response;
             }
     }else{

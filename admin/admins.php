@@ -8,6 +8,8 @@
                 </h4>
             </div>
             <div class="card-body">
+            <?php alertMessage(); ?>
+
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered">
                         <thead>
