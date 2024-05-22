@@ -7,18 +7,18 @@ if(isset($_POST['saveAdmin'])) {
     $email = validate($_POST['email']);
     $password = validate($_POST['password']);
     $phone = validate($_POST['phone']);
-    $is_ban = isset($_POST['is_ban']) ? 1 : 0;
+    $is_ban = isset($_POST['is_ban']) == true ? 1 : 0;
 
     if($name != '' && $email != '' && $password != '' ) {
         
         $emailcheck = mysqli_query($conn, "SELECT * FROM admins WHERE email = '$email'");
         if($emailcheck){
             if(mysqli_num_rows($emailcheck) > 0){
-                redirect('admins-create.php', 'Email already exists', 'error');
+                redirect('admins-create.php', 'Email already exists');
             }
         }
 
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $bcrypt_password = password_hash($password, PASSWORD_BCRYPT);
 
         $data = [
             'name' => $name,
@@ -38,7 +38,7 @@ if(isset($_POST['saveAdmin'])) {
 
 
     } else {
-        redirect('admins-create.php', 'Please fill all the fields', 'error');
+        redirect('admins-create.php', 'Please fill all the fields');
     }
 }
 

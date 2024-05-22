@@ -37,7 +37,7 @@ function alertMessage(){
 }
 
 //Insert record into database
-function insertRecord($tableName, $data){
+function insert($tableName, $data){
     global $conn;
 
     $table = validate($tableName);
@@ -49,6 +49,9 @@ function insertRecord($tableName, $data){
     $finalValues = "'".implode("','", $values)."'";
 
     $quary = "INSERT INTO $table ($finalColumn) VALUES ($FinalValues)";
+    if(!mysqli_query($conn, $quary)) {
+        echo "Error: " . mysqli_error($conn);
+    }
     $result = mysqli_query($conn, $sql);
 
     return $result;
